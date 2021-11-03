@@ -161,6 +161,7 @@ def user_advisor_booked_list(request,userid):
             #for i in bookingset.iterator():
             #    print(i.adId)
             #print(query_set.query)
+            #print(name)
 
             serializer = AdvisorBookedSerializerNew(query_set,many=True)
             return Response(serializer.data, status=status.HTTP_200_OK)
