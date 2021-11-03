@@ -43,7 +43,7 @@ def user_list(request):
         return Response(serializer.data)
 
     elif request.method == 'POST':
-        serializer = UserSerializer(data=request.data,many=True)
+        serializer = UserSerializer(data=request.data)
         if serializer.is_valid():
             serializer.save()
             cusdata = {}
@@ -72,11 +72,13 @@ def advisor_list(request):
             return Response(serializer.data)
 
         elif request.method == 'POST':
+            print(request.data)
             serializer = AdvisorSerializer(many=True,data=request.data)
             if serializer.is_valid():
                 serializer.save()
                 cusdata = {}
-                return Response(cusdata, status=status.HTTP_200_OK)
+                print(serializer.data)
+                return Response(serializer.data, status=status.HTTP_200_OK)
             return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 @api_view(['POST'])
 def user_login(request):
